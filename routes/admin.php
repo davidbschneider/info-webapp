@@ -20,6 +20,10 @@ Route::name('admin.')->group(function (){
         Route::get('dashboard', 'HomeController@index')->name('home');
         // Logout
         Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+        // Users
+        Route::resource('users', 'UsersController')->except([
+            'create', 'store',
+        ]);;
     });
 
     Route::middleware(['admin.guest'])->group(function () {

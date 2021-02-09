@@ -13,10 +13,15 @@
             <ul class="navbar-nav mr-auto">
                 @guest
                 @else
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-jet-nav-link>
                 @endguest
+                @auth('admin')
+                    <x-jet-nav-link href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.*')">
+                        {{ __('users.Users') }}
+                    </x-jet-nav-link>
+                @endauth
             </ul>
 
             <!-- Right Side Of Navbar -->
